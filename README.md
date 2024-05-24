@@ -1,4 +1,4 @@
-#Slutprojekt i Webbutveckling 1
+# Slutprojekt i Webbutveckling 1
 Hemsida för a hålla koll på kryptovalutor och deras kurs
 
 Lead Developer 
