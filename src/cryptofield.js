@@ -7,7 +7,7 @@ let trackedCryptocurrencies;
 let currentMarketData;
 let lastUpdate;
 
-const storage = chrome.storage.local;
+const storage = localStorage;
 
 (async () => {
   try {

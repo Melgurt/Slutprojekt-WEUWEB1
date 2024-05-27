@@ -11,3 +11,20 @@ document.addEventListener("click", (event) => {
     sidebar.classList.remove("show");
   }
 });
+
+const loginButton = document.getElementById("loginButton");
+const profileTemplate = document.getElementById("profileTemplate");
+let clone = profileTemplate.content.cloneNode(true);
+
+const loginForm = document.getElementById("login-form");
+
+loginButton.addEventListener("click", () => {
+  if (
+    document.getElementById("email").value &&
+    document.getElementById("password").value !== ""
+  ) {
+    document.getElementById("profilePage").appendChild(clone);
+
+    loginForm.remove();
+  }
+});

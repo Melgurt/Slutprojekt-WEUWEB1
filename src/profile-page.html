@@ -30,15 +30,50 @@
     </header>
 
     <!--Login-->
-    <form class="login-form" action="/login" method="post">
-      <label for="username">Username:</label>
-      <input type="text" id="username" name="username" required />
+    <form id="login-form">
+      <label for="username">Email</label>
+      <input type="text" id="email" name="email" required placeholder="Email" />
 
-      <label for="password">Password:</label>
-      <input type="password" id="password" name="password" required />
+      <label for="password" id="passwordLabel">Password</label>
+      <input
+        type="password"
+        id="password"
+        name="password"
+        required
+        placeholder="Password"
+      />
 
-      <button type="submit">Log in</button>
+      <button type="submit" id="loginButton">Log in</button>
     </form>
+
+    <!--Profile page-->
+    <div id="profilePage"></div>
+
+    <!--Profile page template-->
+    <template id="profileTemplate">
+      <div class="profile-wrapper">
+        <div class="avatar">
+          <img
+            id="profilePicture"
+            src="/assets/profile-picture.jpg"
+            alt="Avatar"
+          />
+        </div>
+        <div class="profile-information">
+          <h3>John Doe</h3>
+          <p>
+            Cupcake ipsum dolor sit amet macaroon. Powder muffin bonbon cake
+            jelly beans bear claw pudding biscuit. Caramels chupa chups tiramisu
+            oat cake icing ice cream biscuit caramels. Marshmallow jelly-o
+            brownie marshmallow biscuit jelly beans. Chocolate cake fruitcake
+            pastry brownie sesame snaps. Icing sweet roll donut tiramisu
+            gummies. Topping toffee ice cream tiramisu gummies shortbread pie
+            tootsie roll lemon drops. Dragée wafer donut carrot cake powder
+            sesame snaps chocolate cake shortbread.
+          </p>
+        </div>
+      </div>
+    </template>
   </body>
   <script src="script.js"></script>
 </html>
