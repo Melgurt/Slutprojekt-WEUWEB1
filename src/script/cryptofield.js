@@ -78,15 +78,15 @@ function addCryptocurrencyField(cryptocurrencyId) {
 // Search fields
 
 document
-  .getElementById("setCurrencyButton")
+  .getElementById("changeCurrencyButton")
   .addEventListener("click", setCurrency);
 
 async function setCurrency() {
   let searchedCurrency = document
-    .getElementById("currencySearch")
+    .getElementById("changeCurrency")
     .value.toLowerCase();
 
-  document.getElementById("currencySearch").value = "";
+  document.getElementById("changeCurrency").value = "";
 
   try {
     const currencies = await fetchSelectableCurrencies();
@@ -106,15 +106,15 @@ async function setCurrency() {
 }
 
 document
-  .getElementById("addCryptocurrencyButton")
+  .getElementById("addButton")
   .addEventListener("click", addCryptocurrency);
 
 async function addCryptocurrency() {
   let searchedCryptocurrency = document
-    .getElementById("cryptocurrencySearch")
+    .getElementById("addCryptocurrency")
     .value.toLowerCase();
 
-  document.getElementById("cryptocurrencySearch").value = "";
+  document.getElementById("addCryptocurrency").value = "";
 
   try {
     const cryptocurrencies = await fetchSelectableCryptocurrencies();
@@ -136,15 +136,15 @@ async function addCryptocurrency() {
 }
 
 document
-  .getElementById("removeCryptocurrencyButton")
+  .getElementById("removeButton")
   .addEventListener("click", removeCryptocurrency);
 
 async function removeCryptocurrency() {
   let searchedCryptocurrency = document
-    .getElementById("cryptocurrencySearch")
+    .getElementById("addCryptocurrency")
     .value.toLowerCase();
 
-  document.getElementById("cryptocurrencySearch").value = "";
+  document.getElementById("addCryptocurrency").value = "";
 
   trackedCryptocurrencies.forEach(async (cryptocurrencyId, index) => {
     if (cryptocurrencyId == searchedCryptocurrency) {

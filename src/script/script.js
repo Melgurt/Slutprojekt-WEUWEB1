@@ -12,9 +12,11 @@ document.addEventListener("click", (event) => {
   }
 });
 
+//Login page
+
 const loginButton = document.getElementById("loginButton");
 const profileTemplate = document.getElementById("profileTemplate");
-let clone = profileTemplate.cloneNode(true);
+let clone = profileTemplate.content.cloneNode(true);
 
 const loginForm = document.getElementById("login-form");
 

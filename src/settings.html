@@ -4,19 +4,21 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="/src/css/style.css" />
   </head>
   <body>
+    <!--Navbar-->
+
     <header>
       <nav>
         <a class="project-logo" href="/src/home.html"
           ><img
             id="projectLogo"
-            src="/assets/OCTlogo-transformed1.jpg"
+            src="/src/images/OCTlogo-transformed1.png"
             alt="projectLogo"
         /></a>
         <h1>Open Crypto Tracker</h1>
-        <img id="menuButton" src="/assets/menu.png" alt="Menu Button" />
+        <img id="menuButton" src="/src/images/menu.png" alt="Menu Button" />
         <nav id="sidebar">
           <ul>
             <li><a href="/src/home.html">Home</a></li>
@@ -27,6 +29,50 @@
       </nav>
     </header>
 
-    <script src="script.js"></script>
+    <!--Settings body-->
+    <div class="vetintevadkalla">
+      <div class="settings-wrapper">
+        <div class="add-currency-wrapper">
+          <label for="addCryptocurrency">Add cryptocurrency</label>
+          <div class="add-cryptocurrency">
+            <input
+              type="text"
+              name="crypto"
+              id="addCryptocurrency"
+              placeholder="Insert crypto ID"
+            />
+          </div>
+          <div>
+            <button type="button" class="settings-button" id="addButton">
+              Add
+            </button>
+            <button type="button" class="settings-button" id="removeButton">
+              Remove
+            </button>
+          </div>
+        </div>
+
+        <div class="change-currency-wrapper">
+          <label for="changeCurrency">Change currency</label>
+          <div class="change-currency">
+            <input
+              type="text"
+              name="currency"
+              id="changeCurrency"
+              placeholder="Insert currency abbr."
+            />
+          </div>
+          <button
+            type="button"
+            class="settings-button"
+            id="changeCurrencyButton"
+          >
+            Change
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script src="/src/script/script.js"></script>
   </body>
 </html>
