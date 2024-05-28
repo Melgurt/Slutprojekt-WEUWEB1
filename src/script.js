@@ -14,7 +14,7 @@ document.addEventListener("click", (event) => {
 
 const loginButton = document.getElementById("loginButton");
 const profileTemplate = document.getElementById("profileTemplate");
-let clone = profileTemplate.content.cloneNode(true);
+let clone = profileTemplate.cloneNode(true);
 
 const loginForm = document.getElementById("login-form");
 

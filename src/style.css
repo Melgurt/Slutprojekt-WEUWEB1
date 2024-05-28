@@ -66,7 +66,8 @@ nav {
 }
 
 #menuButton {
-  width: 3vw;
+  width: 60px;
+  height: 60px;
   cursor: pointer;
   padding: 0.5vw;
   margin-right: 1.5vw;
@@ -97,6 +98,9 @@ nav {
   font-weight: lighter;
 }
 
+#cryptocurrencyField tr:hover {
+  background-color: #373d42;
+}
 /* Login */
 
 #login-form {

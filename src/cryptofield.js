@@ -11,7 +11,7 @@ const storage = localStorage;
 
 (async () => {
   try {
-    await getStoredData();
+    getStoredData();
     trackedCryptocurrencies.forEach((cryptocurrency) => {
       addCryptocurrencyField(cryptocurrency);
     });
@@ -28,41 +28,27 @@ const storage = localStorage;
 
 // FUNKTIONER SOM FRAMFÖRALLT KÖRS VID START
 
-async function getStoredData() {
-  try {
-    const storedData = await storage.get([
-      "currency",
-      "cryptocurrencies",
-      "marketData",
-      "lastUpdate",
-    ]);
-
-    selectedCurrency = storedData.currency || "usd"; // Sätter default values såhär istället om storedData är tom
-    trackedCryptocurrencies = storedData.cryptocurrencies || [
-      "bitcoin",
-      "ethereum",
-    ];
-    currentMarketData = storedData.marketData;
-    lastUpdate = storedData.lastUpdate || 0;
-  } catch (error) {
-    console.error("Error retrieving data:", error);
-  }
+function getStoredData() {
+  selectedCurrency = storage.getItem("currency") || "usd";
+  trackedCryptocurrencies = JSON.parse(storage.getItem("cryptocurrencies")) || [
+    "bitcoin",
+    "ethereum",
+  ];
+  currentMarketData = JSON.parse(storage.getItem("marketData"));
+  lastUpdate = JSON.parse(storage.getItem("lastUpdate")) || 0;
 }
 
 async function updateMarketData(currency, cryptocurrencies) {
   let marketData = await fetchMarketData(currency, cryptocurrencies);
 
   currentMarketData = marketData;
-  storage.set({ marketData: marketData });
+  storage.setItem("marketData", JSON.stringify(marketData));
 
   lastUpdate = new Date().getTime();
-  console.log(lastUpdate);
-  storage.set({ lastUpdate: lastUpdate });
+  storage.setItem("lastUpdate", JSON.stringify(lastUpdate));
 }
 
-async function setMarketData(marketData, currency) {
-  console.log(marketData);
-
+function setMarketData(marketData, currency) {
   marketData.forEach((cryptocurrency) => {
     console.log(cryptocurrency.id);
     let cryptocurrencyField = document.getElementById(cryptocurrency.id);
@@ -108,7 +94,7 @@ async function setCurrency() {
     currencies.forEach(async (currency) => {
       if (currency == searchedCurrency) {
         selectedCurrency = searchedCurrency;
-        storage.set({ currency: selectedCurrency });
+        storage.setItem({ currency: selectedCurrency });
 
         await updateMarketData(selectedCurrency, trackedCryptocurrencies);
         await setMarketData(currentMarketData, selectedCurrency);
@@ -137,7 +123,7 @@ async function addCryptocurrency() {
       if (cryptocurrency["id"] == searchedCryptocurrency) {
         trackedCryptocurrencies.push(searchedCryptocurrency);
 
-        storage.set({ cryptocurrencies: trackedCryptocurrencies });
+        storage.setItem({ cryptocurrencies: trackedCryptocurrencies });
         addCryptocurrencyField(searchedCryptocurrency);
 
         await updateMarketData(selectedCurrency, trackedCryptocurrencies);
@@ -164,7 +150,7 @@ async function removeCryptocurrency() {
     if (cryptocurrencyId == searchedCryptocurrency) {
       trackedCryptocurrencies.splice(index, 1);
 
-      storage.set({ cryptocurrencies: trackedCryptocurrencies });
+      storage.setItem({ cryptocurrencies: trackedCryptocurrencies });
 
       document.getElementById(cryptocurrencyId).remove();
 
