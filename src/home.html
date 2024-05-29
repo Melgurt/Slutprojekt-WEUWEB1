@@ -5,29 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
     <link rel="stylesheet" href="/src/css/style.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fjalla+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+      rel="stylesheet"
+    />
   </head>
   <body>
     <!--Navbar-->
 
     <header id="header">
-      <nav>
+      <nav class="top-navbar">
         <a class="project-logo" href="/src/home.html"
           ><img
             id="projectLogo"
             src="/src/images/OCTlogo-transformed1.png"
             alt="projectLogo"
+            loading="lazy"
         /></a>
         <h1>Open Crypto Tracker</h1>
-        <img id="menuButton" src="/src/images/menu.png" alt="Menu Button" />
-        <nav id="sidebar">
-          <ul>
-            <li><a href="/src/home.html">Home</a></li>
-            <li><a href="/src/profile-page.html">Profile</a></li>
-            <li><a href="/src/settings.html">Settings</a></li>
-          </ul>
-        </nav>
+        <img
+          id="menuButton"
+          src="/src/images/menu.png"
+          alt="Menu Button"
+          loading="lazy"
+        />
       </nav>
     </header>
+
+    <nav id="sidebar">
+      <ul>
+        <li><a href="/src/home.html">Home</a></li>
+        <li><a href="/src/profile-page.html">Profile</a></li>
+        <li><a href="/src/settings.html">Settings</a></li>
+      </ul>
+    </nav>
 
     <!--Hero section-->
 
@@ -64,10 +78,30 @@
           </div>
         </section>
 
+        <!--Crypto field template-->
+
+        <template id="cryptocurrencyField">
+          <tr class="field-rows">
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+            <td>N/A</td>
+          </tr>
+        </template>
+
         <!--Footer-->
 
         <footer>
-          <table>
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2028.577009387527!2d18.06114377737493!3d59.44012900214656!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x465f9b937e97af13%3A0xef984bf2bc386cb7!2s%C3%85va%20gymnasium!5e0!3m2!1ssv!2sse!4v1717007177604!5m2!1ssv!2sse"
+            width="200"
+            height="200"
+            style="border: 0"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade"
+          ></iframe>
+          <table class="contact-table">
             <thead>
               <tr>
                 <th></th>
@@ -93,19 +127,16 @@
               </tr>
             </tbody>
           </table>
+          <div>
+            <img
+              id="melkerImage"
+              src="/src/images/finmelker.jpg"
+              alt="Melker with banana"
+              loading="lazy"
+            />
+          </div>
         </footer>
       </div>
-
-      <!--Crypto field template-->
-
-      <template id="cryptocurrencyField">
-        <tr class="field-rows">
-          <td>N/A</td>
-          <td>N/A</td>
-          <td>N/A</td>
-          <td>N/A</td>
-        </tr>
-      </template>
     </main>
   </body>
 

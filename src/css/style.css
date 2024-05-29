@@ -1,13 +1,23 @@
 /* Body */
 body {
+  background-image: url(/src/images/potentialbackground2.png);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
   color: aliceblue;
   margin: 0;
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: "Poppins", sans-serif;
+  font-weight: 400;
+  font-style: normal;
 }
 /* Navbar */
 .hidden {
   transform: translateY(-100%);
-  transition: transform 0.1s ease-out;
+  transition: transform 0.2s ease-out;
 }
 
 header {
@@ -22,6 +32,7 @@ header {
   align-items: center;
   backdrop-filter: blur(10px);
   border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  z-index: 500;
 }
 
 header::before {
@@ -44,7 +55,7 @@ header:hover::before {
   left: 100%;
 }
 
-nav {
+nav.top-navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -102,10 +113,12 @@ nav h1 {
   top: 0;
   right: -250px;
   width: 10vw;
-  height: 100%;
-  background: rgb(37, 41, 46);
+  min-height: 100vh;
+  background: linear-gradient(rgb(7, 21, 104), rgb(255, 255, 255, 0.1));
+  border-left: 2px solid rgba(255, 255, 255, 0.2);
   transition: right 0.3s ease-out;
-  box-shadow: -5px 0 5px #181b1e;
+  z-index: 1000;
+  font-size: 16px;
 }
 
 #sidebar.show {
@@ -113,6 +126,7 @@ nav h1 {
 }
 
 #sidebar ul {
+  margin-top: 1vw;
   list-style-type: none;
   padding: 0;
   margin: 0;
@@ -129,11 +143,11 @@ nav h1 {
   color: aliceblue;
   padding: 0.5vw;
   border-radius: 0.5vw;
-  transition: background-color 0.3s ease;
+  transition: color 0.2s ease;
 }
 
 #sidebar a:hover {
-  background-color: rgb(32, 35, 39);
+  color: #009788;
 }
 
 #menuButton {
@@ -142,12 +156,12 @@ nav h1 {
   cursor: pointer;
   padding: 0.5vw;
   margin-right: 1.5vw;
-  transition: transform 0.3s ease;
 }
 
 #menuButton:hover {
   opacity: 0.7;
   transition: opacity 0.2s ease;
+  animation: wobble 0.2s ease;
 }
 
 /* Crypto field */
@@ -156,7 +170,10 @@ nav h1 {
   background-image: url(/src/images/potentialbackground2.png);
   background-size: cover;
   background-position: center;
-  padding-bottom: 15vw;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  font-size: 20px;
 }
 
 .sorting-types h2 {
@@ -197,14 +214,16 @@ nav h1 {
 #login-form {
   display: flex;
   flex-direction: column;
-  width: 300px;
-  margin: 0 auto;
+  width: 40vw;
+  margin-left: 6vw;
+  margin-bottom: 10vw;
   background-color: transparent;
   padding: 2vw;
   border-radius: 5px;
   box-shadow: 5px 5px 8px rgba(0, 0, 0, 0.1);
-  margin-top: 10vw;
-  background-color: #2b3035;
+  margin-top: 15vw;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 #login-form label {
@@ -246,6 +265,11 @@ nav h1 {
   background-color: #017267;
 }
 
+#errorPassword,
+#errorEmail {
+  color: rgb(209, 36, 36);
+}
+
 /* Profile page */
 .avatar {
   width: 100px;
@@ -262,16 +286,16 @@ nav h1 {
 }
 
 .profile-wrapper {
-  margin-top: 2vw;
-  margin-left: 2vw;
-  background-color: #2a2f33;
+  margin: 15vw 0 10vw 2vw;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  border-radius: 0.3vw;
   padding: 2vw;
   width: 60%;
   display: flex;
   justify-content: space-around;
   flex-direction: row;
   align-items: center;
-  box-shadow: 10px 10px 10px #181b1e;
 }
 
 .profile-information {
@@ -281,12 +305,14 @@ nav h1 {
 /* Settings */
 .settings-wrapper {
   display: flex;
-  background-color: #2a2f33;
-  padding: 3vw;
+  background-color: rgba(255, 255, 255, 0.2);
+  padding: 4vw 2vw;
   width: 50%;
   align-items: center;
   justify-content: space-around;
-  box-shadow: 5px 5px 5px #181b1e;
+  margin: 15vw 4vw;
+  border-radius: 0.3vw;
+  backdrop-filter: blur(10px);
 }
 
 .add-cryptocurrency {
@@ -325,12 +351,6 @@ nav h1 {
   background-color: #017267;
 }
 
-.vetintevadkalla {
-  display: flex;
-  justify-content: center;
-  margin-top: 4vw;
-}
-
 #removeButton {
   background-color: rgb(209, 36, 36);
 }
@@ -340,18 +360,75 @@ nav h1 {
 }
 
 /* Footer */
+iframe {
+  border: 2px solid aliceblue;
+  box-shadow: 5px 5px 5px #181b1e;
+}
+
 footer {
+  margin-top: auto;
+  padding: 1vw 0 1vw 0;
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px);
-  padding: 3vw 0 6vw 0;
   border-top: 2px solid rgba(255, 255, 255, 0.8);
-  position: absolute;
-  bottom: -100;
-  width: 100%;
+  display: flex;
+  justify-content: center;
+  z-index: 900;
 }
 
 footer table {
   margin-left: 3vw;
+}
+
+.contact-table {
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.contact-table th,
+.contact-table td {
+  padding: 1rem;
+  text-align: left;
+  font-size: 1.1rem;
+}
+
+.contact-table th {
+  font-weight: bold;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.contact-table a {
+  position: relative;
+  color: aliceblue;
+  text-decoration: none;
+}
+
+.contact-table a:hover {
+  color: aliceblue;
+}
+
+.contact-table a::before {
+  content: "";
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 2px;
+  bottom: 0;
+  left: 0;
+  background-color: aliceblue;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.contact-table a:hover::before {
+  transform: scaleX(1);
+}
+
+#melkerImage {
+  height: 200px;
+  border: 2px solid aliceblue;
+  box-shadow: 5px 5px 5px #181b1e;
 }
 
 /* Animations */
@@ -364,5 +441,17 @@ footer table {
   }
   100% {
     transform: scale(1);
+  }
+}
+
+@keyframes wobble {
+  25% {
+    transform: rotate(10deg);
+  }
+  75% {
+    transform: rotate(-10deg);
+  }
+  100% {
+    transform: rotate(0);
   }
 }
