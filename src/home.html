@@ -9,7 +9,7 @@
   <body>
     <!--Navbar-->
 
-    <header>
+    <header id="header">
       <nav>
         <a class="project-logo" href="/src/home.html"
           ><img
@@ -44,69 +44,71 @@
 
       <!--Crypto field-->
 
-      <section>
-        <div class="field-wrapper">
-          <div class="sorting-types">
-            <h2>Track your favourite cryptocurrencies</h2>
-            <table id="marketDataTable">
-              <thead>
-                <tr>
-                  <th>Coin</th>
-                  <th>Current Price</th>
-                  <th>Market Cap</th>
-                  <th>Price Change (24h)</th>
-                </tr>
-              </thead>
-              <tbody id="cryptocurrencyFields"></tbody>
-            </table>
+      <div class="field-and-footer-wrapper">
+        <section class="cryptocurrency-field">
+          <div class="field-wrapper">
+            <div class="sorting-types">
+              <h2>Track your favourite cryptocurrencies</h2>
+              <table id="marketDataTable">
+                <thead>
+                  <tr>
+                    <th>Coin</th>
+                    <th>Current Price</th>
+                    <th>Market Cap</th>
+                    <th>Price Change (24h)</th>
+                  </tr>
+                </thead>
+                <tbody id="cryptocurrencyFields"></tbody>
+              </table>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      <!--Footer-->
+        <!--Footer-->
 
-      <footer>
-        <table>
-          <thead>
-            <tr>
-              <th></th>
-              <th>Contact</th>
-              <th>Links</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th>Mail</th>
-              <td>melker.vallen@skola.taby.se</td>
-              <td>
-                <a
-                  href="https://www.linkedin.com/in/melker-vall%C3%A9n-542467258/"
-                  >LinkedIn</a
-                >
-              </td>
-            </tr>
-            <tr>
-              <th>Tel</th>
-              <td>070-1337420</td>
-              <td>Nån till länk</td>
-            </tr>
-          </tbody>
-        </table>
-      </footer>
+        <footer>
+          <table>
+            <thead>
+              <tr>
+                <th></th>
+                <th>Contact</th>
+                <th>Links</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Mail</th>
+                <td>melker.vallen@skola.taby.se</td>
+                <td>
+                  <a
+                    href="https://www.linkedin.com/in/melker-vall%C3%A9n-542467258/"
+                    >LinkedIn</a
+                  >
+                </td>
+              </tr>
+              <tr>
+                <th>Tel</th>
+                <td>070-1337420</td>
+                <td>Nån till länk</td>
+              </tr>
+            </tbody>
+          </table>
+        </footer>
+      </div>
 
       <!--Crypto field template-->
 
       <template id="cryptocurrencyField">
         <tr class="field-rows">
-          <th>N/A</th>
-          <th>N/A</th>
-          <th>N/A</th>
-          <th>N/A</th>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>N/A</td>
+          <td>N/A</td>
         </tr>
       </template>
     </main>
   </body>
 
-  <script src="/src/script/cryptofield.js"></script>
+  <script type="module" src="/src/script/home.js"></script>
   <script src="/src/script/script.js"></script>
 </html>

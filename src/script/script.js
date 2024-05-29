@@ -1,3 +1,22 @@
+//Navbar
+let lastScrollPosition = 0;
+
+window.addEventListener("scroll", function () {
+  const navbar = document.getElementById("header");
+  const scrollPosition =
+    window.pageYOffset || document.documentElement.scrollTop;
+
+  if (scrollPosition > 0 && scrollPosition < lastScrollPosition) {
+    // Scrolling up
+    navbar.classList.remove("hidden");
+  } else if (scrollPosition > lastScrollPosition) {
+    // Scrolling down
+    navbar.classList.add("hidden");
+  }
+
+  lastScrollPosition = scrollPosition;
+});
+
 // Sidebar
 const menuToggle = document.getElementById("menuButton");
 const sidebar = document.getElementById("sidebar");
