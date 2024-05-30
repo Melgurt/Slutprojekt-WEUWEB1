@@ -20,7 +20,7 @@ loginButton.addEventListener("click", (event) => {
 });
 
 //Det här är en ful lösning jag vet
-//Jag har en lösning i tidigare committs som skickar en alert till använadren utan js
+//Jag har en lösning i tidigare committs som med synatx i HTML5 skickar en alert till använadren istället
 //Jag jag hade inte tid att leta upp den
 
 const errorEmail = document.getElementById("errorEmail");
@@ -44,7 +44,9 @@ loginButton.addEventListener("click", (e) => {
   }
 
   if (
-    !password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d@$!%*?&]{8,}$/)
+    !password.match(
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
+    )
   ) {
     if (password.length < 8) {
       errorPassword.textContent =
