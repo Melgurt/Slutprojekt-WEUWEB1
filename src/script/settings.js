@@ -9,6 +9,11 @@ document
   .getElementById("changeCurrencyButton")
   .addEventListener("click", setCurrency);
 
+let confirmedCurrency = document.getElementById("confirmed-currency-change");
+let confirmedCrypto = document.getElementById("confirmed-crypto-change");
+
+console.log(confirmedCurrency);
+
 async function setCurrency() {
   let searchedCurrency = document
     .getElementById("changeCurrency")
@@ -19,13 +24,15 @@ async function setCurrency() {
   try {
     const currencies = await fetchSelectableCurrencies();
 
-    currencies.forEach(async (currency) => {
-      if (currency == searchedCurrency) {
-        storage.setItem("currency", currency);
-      }
-    });
+    if (currencies.includes(searchedCurrency)) {
+      storage.setItem("currency", searchedCurrency);
+      storage.setItem("lastUpdate", "0");
+      confirmedCurrency.innerHTML = `Changed currency to ${searchedCurrency.toUpperCase()}`;
+    } else {
+      confirmedCurrency.textContent = `${searchedCurrency.toUpperCase()} is not a valid currency`;
+    }
   } catch (error) {
-    console.error("Error retrieving data:", error);
+    (confirmedCurrency.textContent = `Error retrieving data:`), error;
   }
 }
 
@@ -40,24 +47,36 @@ async function addCryptocurrency() {
 
   document.getElementById("addCryptocurrency").value = "";
 
-  try {
-    const selectableCryptocurrencies = await fetchSelectableCryptocurrencies();
+  let trackedCryptocurrencies =
+    storage.getItem("cryptocurrencies") !== null
+      ? JSON.parse(storage.getItem("cryptocurrencies"))
+      : ["bitcoin", "ethereum"];
 
-    let trackedCryptocurrencies = storage.getItem("cryptocurrencies") || [
-      "bitcoin",
-      "ethereum",
-    ];
-
-    console.log(trackedCryptocurrencies);
-
-    selectableCryptocurrencies.forEach(async (cryptocurrency) => {
-      if (cryptocurrency["id"] == searchedCryptocurrency) {
-        trackedCryptocurrencies.push(cryptocurrency);
-        storage.setItem("cryptocurrencies", JSON.stringify());
+  if (trackedCryptocurrencies.includes(searchedCryptocurrency)) {
+    alert("Cryptocurrency already added");
+  } else {
+    try {
+      const selectableCryptocurrencies =
+        await fetchSelectableCryptocurrencies();
+      if (
+        selectableCryptocurrencies.some(
+          (cryptocurrency) => cryptocurrency["id"] === searchedCryptocurrency
+        )
+      ) {
+        trackedCryptocurrencies.push(searchedCryptocurrency);
+        storage.setItem(
+          "cryptocurrencies",
+          JSON.stringify(trackedCryptocurrencies)
+        );
+        console.log(storage.getItem("cryptocurrencies"));
+        storage.setItem("lastUpdate", "0");
+        confirmedCrypto.textContent = `${searchedCryptocurrency.toUpperCase()} was added to the tracked cryptos`;
+      } else {
+        confirmedCrypto.textContent = `${searchedCryptocurrency.toUpperCase()} was not found`;
       }
-    });
-  } catch (error) {
-    console.error("Error retrieving data:", error);
+    } catch (error) {
+      (confirmedCrypto.textContent = "Error retrieving data:"), error;
+    }
   }
 }
 
@@ -65,7 +84,7 @@ document
   .getElementById("removeButton")
   .addEventListener("click", removeCryptocurrency);
 
-async function removeCryptocurrency() {
+function removeCryptocurrency() {
   let searchedCryptocurrency = document
     .getElementById("addCryptocurrency")
     .value.toLowerCase();
@@ -76,14 +95,19 @@ async function removeCryptocurrency() {
     storage.getItem("cryptocurrencies")
   ) || ["bitcoin", "ethereum"];
 
-  trackedCryptocurrencies.forEach(async (cryptocurrencyId, index) => {
-    if (cryptocurrencyId == searchedCryptocurrency) {
-      trackedCryptocurrencies.splice(index, 1);
+  if (trackedCryptocurrencies.includes(searchedCryptocurrency)) {
+    trackedCryptocurrencies.splice(
+      trackedCryptocurrencies.indexOf(searchedCryptocurrency),
+      1
+    );
 
-      storage.setItem(
-        "cryptocurrencies",
-        JSON.stringify(trackedCryptocurrencies)
-      );
-    }
-  });
+    storage.setItem(
+      "cryptocurrencies",
+      JSON.stringify(trackedCryptocurrencies)
+    );
+    storage.setItem("lastUpdate", "0");
+    confirmedCrypto.textContent = `${searchedCryptocurrency.toUpperCase()} was removed from tracked cryptos`;
+  } else {
+    confirmedCrypto.textContent = "Could not find cryptocurrency";
+  }
 }

@@ -13,27 +13,35 @@ const storage = localStorage;
     trackedCryptocurrencies.forEach((cryptocurrency) => {
       addCryptocurrencyField(cryptocurrency);
     });
-
+    console.log(lastUpdate);
     if (new Date().getTime() - lastUpdate > 30000) {
       await updateMarketData(selectedCurrency, trackedCryptocurrencies);
       console.log("Fetching new data");
     }
     setMarketData(currentMarketData, selectedCurrency);
   } catch (error) {
-    console.error("Error executing functions:", error);
+    alert("Error executing functions:", error);
   }
 })();
 
-// FUNKTIONER SOM FRAMFÖRALLT KÖRS VID START
-
 function getStoredData() {
   selectedCurrency = storage.getItem("currency") || "usd";
-  trackedCryptocurrencies = JSON.parse(storage.getItem("cryptocurrencies")) || [
-    "bitcoin",
-    "ethereum",
-  ];
-  currentMarketData = JSON.parse(storage.getItem("marketData"));
-  lastUpdate = JSON.parse(storage.getItem("lastUpdate")) || 0;
+
+  trackedCryptocurrencies =
+    storage.getItem("cryptocurrencies") !== null
+      ? JSON.parse(storage.getItem("cryptocurrencies"))
+      : ["bitcoin", "ethereum"];
+
+  console.log(trackedCryptocurrencies);
+
+  currentMarketData =
+    storage.getItem("marketData") !== null
+      ? JSON.parse(storage.getItem("marketData"))
+      : null;
+  lastUpdate =
+    storage.getItem("lastUpdate") !== null
+      ? JSON.parse(storage.getItem("lastUpdate"))
+      : 0;
 }
 
 async function updateMarketData(currency, cryptocurrencies) {
