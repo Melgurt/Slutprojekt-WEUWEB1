@@ -8,7 +8,6 @@ let lastUpdate;
 const storage = localStorage;
 
 (async () => {
-  storage.clear();
   try {
     getStoredData();
     trackedCryptocurrencies.forEach((cryptocurrency) => {
@@ -27,6 +26,8 @@ const storage = localStorage;
 
 function getStoredData() {
   selectedCurrency = storage.getItem("currency") || "usd";
+
+  console.log(storage.getItem("cryptocurrencies"));
 
   trackedCryptocurrencies =
     storage.getItem("cryptocurrencies") !== null

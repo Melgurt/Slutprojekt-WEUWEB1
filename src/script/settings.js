@@ -27,7 +27,7 @@ async function setCurrency() {
     if (currencies.includes(searchedCurrency)) {
       storage.setItem("currency", searchedCurrency);
       storage.setItem("lastUpdate", "0");
-      confirmedCurrency.innerHTML = `Changed currency to ${searchedCurrency.toUpperCase()}`;
+      confirmedCurrency.textContent = `Changed currency to ${searchedCurrency.toUpperCase()}`;
     } else {
       confirmedCurrency.textContent = `${searchedCurrency.toUpperCase()} is not a valid currency`;
     }
