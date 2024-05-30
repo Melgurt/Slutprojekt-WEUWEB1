@@ -55,7 +55,6 @@ document.addEventListener("DOMContentLoaded", () => {
     if (email.trim() !== "" && password.trim() !== "") {
       loginForm.remove();
 
-      // Clone the template and insert it into the profilePage
       const clonedProfileTemplate = profileTemplate.content.cloneNode(true);
       profilePage.appendChild(clonedProfileTemplate);
     }
